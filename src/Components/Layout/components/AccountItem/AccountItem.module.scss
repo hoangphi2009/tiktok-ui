@@ -1,0 +1,32 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    padding: 6px 16px;
+    cursor: pointer;
+    &:hover {
+        background-color: rgb(22, 24, 35,0.03);
+    }
+}
+.avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    
+}
+.info {
+    flex: 1;
+    margin-left: 12px;
+}
+.name {
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+.check {
+    margin-left: 6px;
+    color: rgb(32, 213, 236,0.6);
+}
+.username {
+    font-size: 1.4rem;
+    color: rgb(22, 24, 35, 0.5);
+}
