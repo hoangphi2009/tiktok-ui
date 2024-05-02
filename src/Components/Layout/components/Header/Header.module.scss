@@ -14,8 +14,8 @@
     width: var(--default-layout-width);
     justify-content: space-between;
 }
-.logo {
-}
+// .logo {
+// }
 
 .search-btn,
 .search-result {
@@ -85,3 +85,10 @@
         background-color: rgb(22, 24, 35, 0.06);
     }
 }
+.more-btn{
+    font-size: 2rem;
+    margin-left: 28px;
+    padding: 4px 8px;
+    background: transparent;
+}
+
