@@ -8,6 +8,7 @@
     justify-content: center;
 }
 .inner {
+    padding: 0 var(--default-layout-horizontal-spacer);
     height: 100%;
     display: flex;
     align-items: center;
@@ -90,5 +91,6 @@
     margin-left: 28px;
     padding: 4px 8px;
     background: transparent;
+    cursor: pointer;
 }
 
