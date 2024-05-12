@@ -8,16 +8,23 @@ import {
     faEarthAsia,
     faCircleQuestion,
     faKeyboard,
+    faCloudUpload,
+    faUser,
+    faGear,
+    faSignOut,
 } from '@fortawesome/free-solid-svg-icons';
 import { Wrapper as PopperWrapper } from '~/Components/Popper';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
+import TippyIcont from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 import images from '~/assets/images';
 import 'tippy.js/dist/tippy.css';
 import styles from './Header.module.scss';
 import AccountItem from '../AccountItem';
 import Button from '~/Components/Button';
 import Menu from '~/Components/Popper/Menu';
+import { faTiktok } from '@fortawesome/free-brands-svg-icons';
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
     {
@@ -29,7 +36,7 @@ const MENU_ITEMS = [
                 {
                     code: 'en',
                     title: 'English',
-                    
+
                 },
                 {
                     code: 'vi',
@@ -58,12 +65,38 @@ function Header() {
         }, 0);
     }, []);
     const handleMenuChange = (menuItem) => {
-        switch(menuItem.type){
+        switch (menuItem.type) {
             case 'language':
                 break;
             default:
         }
     };
+    const currenUser = true
+
+    const userMenu = [
+        {
+            icon: <FontAwesomeIcon icon={faUser} />,
+            title: 'View profile',
+            to: '/feedback',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faTiktok} />,
+            title: 'Get coins',
+            to: '/feedback',
+        }, 
+        {
+            icon: <FontAwesomeIcon icon={faGear} />,
+            title: 'Settings',
+            to: '/feedback',
+        },
+        ...MENU_ITEMS,
+        {
+            icon: <FontAwesomeIcon icon={faSignOut} />,
+            title: 'Log out',
+            to: '/feedback',
+            separate: true,
+        }
+    ]
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -98,13 +131,33 @@ function Header() {
                         </button>
                     </div>
                 </Tippy>
+                {/* sử lý header user khi đăng nhập và ko đăng nhập */}
                 <div className={cx('actions')}>
-                    <Button text>Upload</Button>
-                    <Button primary>Log in</Button>
-                    <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
-                        <button className={cx('more-btn')}>
-                            <FontAwesomeIcon icon={faEllipsisVertical} />
-                        </button>
+                    {currenUser ? (
+                        <>
+                            <TippyIcont delay={[0, 200]} content="Upload video">
+                                <button className={cx('action-btn')}>
+                                    <FontAwesomeIcon icon={faCloudUpload} />
+                                </button>
+                            </TippyIcont>
+                        </>
+                    ) : (
+                        <>
+                            <Button text>Upload</Button>
+                            <Button primary>Log in</Button>
+                        </>
+                    )}
+                    <Menu items={currenUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
+                        {currenUser ? (
+                            <img
+                                src='https://media-cdn-v2.laodong.vn/storage/newsportal/2023/8/26/1233821/Giai-Nhi-1--Nang-Tre.jpg'
+                                className={cx('user-avatar')}
+                                alt='Nguyen Van A' />
+                        ) : (
+                            <button className={cx('more-btn')}>
+                                <FontAwesomeIcon icon={faEllipsisVertical} />
+                            </button>
+                        )}
                     </Menu>
                 </div>
             </div>
